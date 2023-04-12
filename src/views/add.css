@@ -1,0 +1,224 @@
+p{
+    font-size: medium;
+    color: #617143;
+    font-weight:bold;
+    
+     
+}
+
+body{
+    color: #28B5B5;
+    
+}
+
+
+.rrcard1{
+   
+   padding-top: 2%;
+    padding-left: 40%;
+    padding-right: 20%;
+
+}
+.rrcard2{
+    
+
+    
+    border: 2px solid red;
+
+}
+.rrcards{
+    border: 3px solid red;
+  
+
+}
+.hmpagebody{
+    content: '';
+    background-image: url('https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    background-color: rgba(red, green, blue, 0.5);
+    opacity: 0.9;
+    z-index: -1;
+   
+}
+
+.logo {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+.logo:hover {
+    transform: rotate(360deg);
+  }
+
+.head1{
+    opacity: 1;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  
+
+  }
+  
+.head1:hover {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+.fropbody{
+    content: '';
+    background-image: url('https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(red, green, blue, 0.5);
+    opacity: 0.9;
+    z-index: -1;
+
+
+
+}
+card{
+    font-weight: bold;
+}
+
+.button {
+    background-color:#6D9886;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 20%;
+    transition: transform 0.2s ease-in-out;
+    border-color: white;
+size: large;
+  }
+  
+  .button:hover {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+
+  .icon-button {
+        padding: 8px;
+        border-radius: 50%;
+        animation: pulse 1s infinite;
+        color: red;
+        border-color: red;
+  }
+  .icon-button2 {
+    padding: 8px;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+    
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  .icon-button:hover {
+    animation: none;
+  }
+
+  .grid-container {
+    animation-name: slide-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .cam{
+    /* padding: 10px;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+    color: red;
+    border-color: red;} */
+    padding: 8px;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+    color: red;
+    border-color: red;}
+  
+
+    .imggal{
+
+        animation-name: slide-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    /* border: 50px solid white;
+    border-color: white; */
+   
+    }
+
+    
+    .button3{
+     
+        transition: transform 0.3s ease;
+        width: 150px;
+        padding: 1; margin: 0;
+        border-radius:50;
+        background-color: #6D9886 ;
+        box-shadow :20px;
+        border: #6D9886;
+    }
+      
+      .button3:hover {
+        transform: rotate(180deg);
+      }
+      
+      
+      .hmpagebodydiv{
+        height:900px;
+        width: auto;
+        justify-content: center;
+        align-content: center;
+        background-image: url('https://images.unsplash.com/photo-1615224571870-e863823760fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60');
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+        background-color: rgba(red, green, blue, 0.5);
+        opacity: 0.9;
+        z-index: -1;
+        
+       
+    }
+      
+    .hmpagebodyd{
+        width: auto;
+        justify-content: center;
+        align-content: center;
+        /* background-image: url('https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800'); */
+        /* background-repeat: no-repeat; */
+        /* background-position: right; */
+        background-size: cover;
+
+
+    }
+  
