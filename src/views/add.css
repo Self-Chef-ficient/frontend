@@ -76,14 +76,23 @@ body{
 .fropbody{
     content: '';
     background-image: url('https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
+    animation: slideBg 20s linear infinite;
     background-color: rgba(red, green, blue, 0.5);
     opacity: 0.9;
     z-index: -1;
 
-
+    @keyframes slideBg {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 0;
+      }
+    }
 
 }
 card{
@@ -122,7 +131,7 @@ size: large;
   .icon-button2 {
     padding: 8px;
     border-radius: 50%;
-    animation: pulse 1s infinite;
+    /* animation: pulse 1s infinite; */
     
   }
   

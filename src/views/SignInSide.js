@@ -12,11 +12,13 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState, useEffect } from "react";
+import { useState} from "react";
+// import { useState, useEffect } from "react";
 import axios from 'axios';
-import { makeStyles } from '@mui/styles';
-import add from './add.css';
+// import { makeStyles } from '@mui/styles';
+// import add from './add.css';
 import {useNavigate} from 'react-router-dom'
+import add from "./add.css";
 
 const theme = createTheme({ palette: {
   primary: {
@@ -32,12 +34,12 @@ const theme = createTheme({ palette: {
     contrastText: '',
   },
 }});
-const useStyles = makeStyles({
-  gridContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-});
+// const useStyles = makeStyles({
+//   gridContainer: {
+//     display: 'flex',
+//     justifyContent: 'center',
+//   },
+// });
 
 export default function SignInSide() {
 
@@ -45,7 +47,7 @@ export default function SignInSide() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const classes = useStyles();
+  // const classes = useStyles();
   const Login = (event) => {
     // event.preventDefault();
     // const data = new FormData(event.currentTarget);
@@ -53,11 +55,13 @@ export default function SignInSide() {
       email: email,
       password: password,
     };
-    axios.post('http://localhost:5001/auth/login', reqBody)
+    axios.post('https://self-chef-backend.onrender.com/auth/login', reqBody)
     .then((response) => {
       // Handle successful login
       console.log(response.data);
       history("/HomePage")
+      sessionStorage.setItem("token",response.data.accessToken);
+                window.location="/HomePage"
     })
     .catch((error) => {
       // Handle authentication error
@@ -169,8 +173,8 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link href="/SignUp" variant="body2">
+                    Don't have an account? Sign Up
                   </Link>
                 </Grid>
               </Grid>

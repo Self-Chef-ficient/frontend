@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import add from "./add.css";
 
 
 
@@ -25,7 +26,7 @@ export default function SignUp() {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
 
-  const Register = (event) => {
+  const SignUp = (event) => {
     // event.preventDefault();
     // const data = new FormData(event.currentTarget);
     const reqBody = {
@@ -34,7 +35,7 @@ export default function SignUp() {
       email: email,
       password: password,
     }
-    axios.post(`http://localhost:5001/auth/register`, reqBody)
+    axios.post(`https://self-chef-backend.onrender.com/auth/register`, reqBody)
     .then((respose)=>{
       console.log(respose)
     }).catch((err)=>{
@@ -131,7 +132,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={()=>Register()}
+              onClick={()=>SignUp()}
             >
               Sign Up
             </Button>
