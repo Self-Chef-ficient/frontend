@@ -11,7 +11,17 @@ body{
     
 }
 
+.gallery {
+  width: 27%;
+  height: 27%;
+  overflow: auto; /* add scrollbars if necessary */
+  border-radius: 20%;
+}
 
+.gallery img {
+  max-width: 100%;
+  max-height: 100%;
+}
 .rrcard1{
    
    padding-top: 2%;
@@ -76,14 +86,23 @@ body{
 .fropbody{
     content: '';
     background-image: url('https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
+    animation: slideBg 20s linear infinite;
     background-color: rgba(red, green, blue, 0.5);
     opacity: 0.9;
     z-index: -1;
 
-
+    @keyframes slideBg {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 0;
+      }
+    }
 
 }
 card{
@@ -122,7 +141,7 @@ size: large;
   .icon-button2 {
     padding: 8px;
     border-radius: 50%;
-    animation: pulse 1s infinite;
+    /* animation: pulse 1s infinite; */
     
   }
   
@@ -219,6 +238,12 @@ size: large;
         /* background-position: right; */
         background-size: cover;
 
+
+    }
+    .FoodImageNameforQuiz{
+    font-size: larger;
+    color: #000;
+    font-weight:bold;
 
     }
   

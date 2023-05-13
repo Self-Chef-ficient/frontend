@@ -1,27 +1,24 @@
 import NavbarTemp from "./NavbarTemp"
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import { createTheme } from '@mui/material';
-import { ThemeProvider } from '@emotion/react';
-import { makeStyles } from '@material-ui/core/styles';
-import add from './add.css';
-// import Chip from "@mui/material";
-import Autocomplete from '@mui/material/Autocomplete';
-import Stack from '@mui/material/Stack';
 import { useState } from "react";
-import {OutlinedInput, Select, Chip} from "@mui/material";
 import TagsInput from "./TagsInput";
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import ChipInput from 'material-ui-chip-input'
+import axios from "axios";
+// import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+// import Frop from "./Frop";
+import add from "./add.css";
+import { Paper } from "@material-ui/core";
+
+
+
+
+
+ 
+
+
+
 
 export default function Likedis() {
     const [tags, setTags] = useState([]);
@@ -29,21 +26,67 @@ export default function Likedis() {
 
     const handleChange = (newtags) =>{
         setTags(newtags)
+        
     }
     const handleChangeAvoid = (newtags) =>{
         setNotIncluded(newtags)
+    
+    }
+
+    const history = useNavigate();
+    function handleButtonClick() {
+      
+      const uniqueTags = [...new Set(tags)]; // create a new array with unique tags
+      const uniqueTags2 = [...new Set(notIncluded)];
+      const result = {
+        liked:  uniqueTags,
+        disliked:  uniqueTags2
+      };
+      console.log(result)
+      axios.post('https://self-chef-backend.onrender.com/food/recommend2',result)
+        .then(response => {
+          console.log('Data received from server:', response.data);
+          console.log('Data received from server:', response.data["recommendations"][0]);
+          localStorage.setItem("dish1", JSON.stringify(response.data["recommendations"][0]))
+          localStorage.setItem("dish2", JSON.stringify(response.data["recommendations"][1]))
+          localStorage.setItem("dish3", JSON.stringify(response.data["recommendations"][2]))
+          history("/Frop")
+          // window.location.href = '/frop?data=' + encodeURIComponent(JSON.stringify(result));
+        })
+        .catch(error => {
+          console.error('Error sending POST request:', error);
+        });
     }
 
 
   return (
     <>
     <NavbarTemp/>
-    <br></br><br></br>
+   
+
+    <Paper
+        elevation={3}
+        style={{
+          height: 900,
+          backgroundImage: `url(https://images.unsplash.com/photo-1538506392157-218c11f95129?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1655&q=80)`,
+          backgroundSize: "cover",
+          backgroundPosition: "left",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "rgba(255,255,255,0.5",
+          overflowY: 'scroll',
+          opacity: 0.9,
+          position: "relative",
+        }}
+      >
     <Box
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 1,  width: 600,
-        height: 100, },
+        height: 100,
+        '& input': {
+          fontWeight: 'bold',
+          color: 'black',
+        }, },
       }}
       noValidate
       autoComplete="off"
@@ -64,8 +107,6 @@ export default function Likedis() {
               minrows={1}
             />
           </div>
-         
-      
       </div>
       <br>
       </br><br></br>
@@ -85,22 +126,14 @@ export default function Likedis() {
               minrows={1}
             />
           </div>
-      {/* <TextField
-
-          id="outlined-textarea"
-          variant="standard"
-          label=""
-          placeholder="Enter here"
-          multiline
-          maxRows={5}
-        /> */} 
       </div>
       <br>
       </br><br></br><br></br>
       <div>
-      <Button size="large" variant="contained" color="success">Get Recommendation</Button>
+      <Button size="large" variant="contained" color="success" onClick={handleButtonClick}>Get Recommendation</Button>
       </div>  
     </Box>
+    </Paper>
     </>
   );
 }
