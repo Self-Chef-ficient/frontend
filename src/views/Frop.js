@@ -124,7 +124,7 @@ export default function Frop()
         alt="Paella dish"
       />
       <CardActions disableSpacing>
-        <IconButton class="icon-button"  color="error" aria-label="add to favorites">
+        <IconButton class="icon-button"  color="error" aria-label="add to favorites" >
           <FavoriteIcon />
         </IconButton>
        

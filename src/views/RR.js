@@ -44,34 +44,6 @@ import * as React from "react";
 // import TextField from "@mui/material/TextField";
 import axios from "axios";
 
-// const card = (
-//   <React.Fragment>
-//     <CardContent>
-//       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-//         Recipe
-//       </Typography>
-//       <Typography variant="h6" component="div"></Typography>
-//     </CardContent>
-//     <CardActions></CardActions>
-//   </React.Fragment>
-// );
-// interface ExpandMoreProps extends IconButtonProps {
-//   expand: boolean;
-// }
-
-// const ExpandMore = styled((props: ExpandMoreProps) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-//   marginLeft: "auto",
-//   transition: theme.transitions.create("transform", {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
-
-
-// Define the ExpandMoreProps interface which extends IconButtonProps
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;

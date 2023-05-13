@@ -61,12 +61,12 @@ const FoodRecommendations = () => {
    
       <NavbarTemp/>
    
-      <div  class="hmpagebodydiv">
+      <div  class="hmpagebodydiv"> 
       
       
       <br></br>
       <br></br>
-      <img class="imggal" src={images[currentImageIndex]} alt="gallery" />
+      
       
       <div>
       &nbsp;&nbsp;&nbsp;&nbsp;
@@ -75,7 +75,7 @@ const FoodRecommendations = () => {
           
       <Button size="large" variant="contained" color="error"sx={{ width: 200, padding: 1, margin: 2, borderRadius:50 , boxShadow:50}} onClick={() => handleButtonClick(1)}>No</Button>
       </div>
-      <Button size="large" variant="contained" sx={{ width: 200, padding: 1, margin: 2, borderRadius:50 , boxShadow:50}} a href="/Likedis">Enter Ingredients</Button>
+      <Button size="large" variant="contained"color="success" sx={{ width: 400, padding: 1, margin: 2, boxShadow:50}} a href="/Likedis">Skip and Enter Ingredients</Button>
       </div>
       
       

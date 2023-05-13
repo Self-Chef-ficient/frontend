@@ -103,7 +103,7 @@ export default function ButtonAppBar() {
        
     
     }
-    
+  const UserName=sessionStorage.getItem("first_name");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -146,7 +146,7 @@ export default function ButtonAppBar() {
             <a class="head1" href='/HomePage' style={{textDecoration: 'none', color:'white'}}>Self Chef-ficient  </a>
           </Typography>
          
-          <Button  size="large" color="inherit" sx ={{ flexGrow: 1, justifyContent:'right', paddingRight:5, fontFamily:font, fontWeight:"bold"}}>My Profile</Button>
+          <Button  size="large" color="inherit" sx ={{ flexGrow: 1, justifyContent:'right', paddingRight:5, fontFamily:font, fontWeight:"bold"}}>Hello {UserName}</Button>
          
         
         </Toolbar>

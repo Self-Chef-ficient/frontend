@@ -11,7 +11,17 @@ body{
     
 }
 
+.gallery {
+  width: 27%;
+  height: 27%;
+  overflow: auto; /* add scrollbars if necessary */
+  border-radius: 20%;
+}
 
+.gallery img {
+  max-width: 100%;
+  max-height: 100%;
+}
 .rrcard1{
    
    padding-top: 2%;
@@ -228,6 +238,12 @@ size: large;
         /* background-position: right; */
         background-size: cover;
 
+
+    }
+    .FoodImageNameforQuiz{
+    font-size: larger;
+    color: #000;
+    font-weight:bold;
 
     }
   

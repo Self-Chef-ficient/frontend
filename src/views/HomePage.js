@@ -56,7 +56,7 @@ export default function HomePage() {
                   '&:hover': {
                    transform: 'translateY(-4px)'}, border: '20px solid white',
                     outline: 'none'}} >
-              <CardActionArea  href="/FoodRec" onClick={handleClick}>
+              <CardActionArea  href="/FoodRectrial" onClick={handleClick}>
                 <CardMedia
                   sx={{ height: 400 }}
                   image="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"

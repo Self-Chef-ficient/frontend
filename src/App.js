@@ -12,6 +12,8 @@ import Frop from './views/Frop';
 import GridTest from "./views/GridTest"
 import User from "./views/User"
 import FropQ from './views/FropQ';
+import FoodRectrial from './views/FoodRectrial';
+
 function App() {
   return (
     //<div className="App">
@@ -19,7 +21,7 @@ function App() {
      <div className='App'>
       <Routes>
       <Route exact path="/SignUp" element={<SignUp/>}></Route>
-     <Route exact path="/" element={<SignInSide/>}></Route>
+     <Route exact path="/SignInSide" element={<SignInSide/>}></Route>
      <Route exact path="/HomePage" element={<HomePage/>}></Route>
      <Route exact path="/Likedis" element={<Likedis/>}></Route>
      <Route exact path="/RR" element={<RR/>}></Route>
@@ -28,6 +30,8 @@ function App() {
      <Route exact path="/GridTest" element={<GridTest/>}></Route>
      <Route exact path="/User" element={<User/>}></Route>
      <Route exact path="/FropQ" element={<FropQ/>}></Route>
+     <Route exact path="/FoodRectrial" element={<FoodRectrial/>}></Route>
+
      </Routes>
      </div>
      </BrowserRouter>
