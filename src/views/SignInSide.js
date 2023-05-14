@@ -56,15 +56,19 @@ export default function SignInSide() {
       email: email,
       password: password,
     };
-    axios.post('https://self-chef-backend.onrender.com/auth/login', reqBody)
+    axios.post(process.env.REACT_APP_BackendAPI+'/auth/login', reqBody)
     .then((response) => {
       // Handle successful login
       console.log(response.data);
       
       sessionStorage.setItem("token",response.data.token,);
       sessionStorage.setItem("first_name",response.data.first_name);
+      sessionStorage.setItem("User_id", response.data.id)
       console.log(sessionStorage.getItem("token"));
       console.log(sessionStorage.getItem("first_name"));
+      console.log(sessionStorage.getItem("User_id"));
+
+
       var delayInMilliseconds = 3; //10 second
 
            setTimeout(function() {
@@ -96,7 +100,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://stories.freepiklabs.com/storage/50716/Frozen-Food-01.svg)',
+            backgroundImage: 'url(./Signin.png)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

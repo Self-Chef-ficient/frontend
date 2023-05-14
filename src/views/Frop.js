@@ -21,6 +21,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import * as React from 'react';
 import add from "./add.css";
 // import queryString from 'query-string';
+import debounce from 'lodash/debounce';
 
 
 
@@ -40,11 +41,9 @@ const card = (
     </CardActions>
   </React.Fragment>
 );
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
+
+const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -86,6 +85,16 @@ export default function Frop()
     const data= JSON.parse(dish1);
     const data2= JSON.parse(dish2);
     const data3= JSON.parse(dish3);
+    const [favorites, setFavorites] = useState('');
+    const UserId=sessionStorage.getItem("User_id");
+
+const handleFavorite = (foodName) => {
+  setFavorites(foodName);
+  console.log("clicked on fav", favorites,UserId);
+  
+};
+
+      
 
     return (
       <>
@@ -96,26 +105,18 @@ export default function Frop()
         
         <Grid >
         <Card variant="outlined" sx={{ maxWidth: 250 , boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)',
-    transform: 'translateY(-8px)',
-    transition: 'transform 0.2s ease-in-out',
-    '&:hover': {
-      transform: 'translateY(-4px)',
-    },border: '20px solid white',
-    outline: 'none',borderRadius:5}} >{card}
+              transform: 'translateY(-8px)',
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+              transform: 'translateY(-4px)',
+              },border: '20px solid white',
+              outline: 'none',borderRadius:5}} >{card}
         <Typography>{data.food_name}</Typography>
         <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}} aria-label="recipe" src={recipe}>
-            
-          </Avatar>
+          <Avatar sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}} aria-label="recipe" src={recipe}></Avatar>
         }
-        // <imgage>{recipe}</imgage>
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-          
-        // }
+
       />
       <CardMedia
         component="img"
@@ -124,7 +125,9 @@ export default function Frop()
         alt="Paella dish"
       />
       <CardActions disableSpacing>
-        <IconButton class="icon-button"  color="error" aria-label="add to favorites" >
+        <IconButton class="icon-button"  color="error" aria-label="add to favorites" 
+         onClick={() => handleFavorite(data.food_id)}
+        >
           <FavoriteIcon />
         </IconButton>
        
@@ -159,35 +162,36 @@ export default function Frop()
     
         <Grid >
         <Card variant="outlined" sx={{ maxWidth: 250 , boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)',
-    transform: 'translateY(-8px)',
-    transition: 'transform 0.2s ease-in-out',
-    '&:hover': {
-      transform: 'translateY(-4px)',
-    },border: '20px solid white',
-    outline: 'none',borderRadius:5}} >{card}
+              transform: 'translateY(-8px)',
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+              transform: 'translateY(-4px)',
+                },border: '20px solid white',
+              outline: 'none',borderRadius:5}} >{card}
         <Typography>{data2.food_name}</Typography>
         <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}}  aria-label="recipe" src={recipe}>
-            R
-          </Avatar>
-        }
+              avatar={
+              <Avatar sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}}  aria-label="recipe" src={recipe}>
+               R
+              </Avatar>
+                }
     
       />
       <CardMedia
-        component="img"
-        height="194"
-        image={data2.image_link}
-        alt="Paella dish"
+              component="img"
+              height="194"
+              image={data2.image_link}
+              alt="Paella dish"
       />
       <CardActions disableSpacing>
-        <IconButton class="icon-button" color="error" aria-label="add to favorites">
+        <IconButton class="icon-button" color="error" aria-label="add to favorites"
+        onClick={() => handleFavorite(data.food_id)}
+        >
           <FavoriteIcon />
         </IconButton>
        
         <ExpandMore
-        color="secondary"
-
+          color="secondary"
           expand={expanded1}
           onClick={handleExpandClick1}
           aria-expanded={expanded1}
@@ -232,7 +236,9 @@ export default function Frop()
         alt="Paella dish"
       />
       <CardActions disableSpacing>
-        <IconButton class="icon-button" color="error" aria-label="add to favorites">
+        <IconButton class="icon-button" color="error" aria-label="add to favorites"
+         onClick={() => handleFavorite(data3.food_id)}
+        >
           <FavoriteIcon />
         </IconButton>
         

@@ -47,7 +47,7 @@ function SignUp() {
       email: email,
       password: password,
     }
-    axios.post(`https://self-chef-backend.onrender.com/auth/register`, reqBody)
+    axios.post(process.env.REACT_APP_BackendAPI+`/auth/register`, reqBody)
     .then((respose)=>{
       window.location="/SignInSide"
       console.log(respose)
