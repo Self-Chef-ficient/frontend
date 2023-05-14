@@ -47,9 +47,9 @@ body{
     background-repeat: no-repeat;
     background-position: right;
     background-size: cover;
-    background-color: rgba(red, green, blue, 0.5);
+    /* background-color: rgba(red, green, blue, 0.5);
     opacity: 0.9;
-    z-index: -1;
+    z-index: -1; */
    
 }
 
@@ -222,9 +222,9 @@ size: large;
         background-repeat: no-repeat;
         background-position: right;
         background-size: cover;
-        background-color: rgba(red, green, blue, 0.5);
-        opacity: 0.9;
-        z-index: -1;
+        /* background-color: rgba(red, green, blue, 0.5); */
+        /* opacity: 0.9;
+        z-index: -1; */
         
        
     }
@@ -246,4 +246,15 @@ size: large;
     font-weight:bold;
 
     }
-  
+  .ProfileName{
+    float:left;
+    font-size: 40px;
+    font-family: sans-serif;
+    font-weight: 400;
+    color: #000;
+    padding-left: 10%;
+    font-weight:bold;
+    padding-bottom: 1%;
+
+
+  }

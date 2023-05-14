@@ -16,7 +16,7 @@ const [voteCount, setVoteCount] = useState(0);
 const history = useNavigate();
 
 useEffect(() => {
-    fetch('https://self-chef-backend.onrender.com/quiz')
+    fetch(process.env.REACT_APP_BackendAPI+'/quiz')
       .then(response => response.json())
       .then(data => setImages(data.ingr));
       
@@ -35,7 +35,7 @@ const handleLike = (imageName, like) => {
       }));
      console.log({ingr});
      console.log("testing");
-     axios.post('https://self-chef-backend.onrender.com/food/recommend3',{ingr})
+     axios.post(process.env.REACT_APP_BackendAPI+'/food/recommend3',{ingr})
         .then(response => {
           console.log('Data received from server:', response.data);
           console.log('Data received from server:', response.data["recommendations"][0]);
@@ -49,6 +49,7 @@ const handleLike = (imageName, like) => {
       setCurrentIndex(currentIndex + 1);
     }
   };
+ 
 
   return (
     <>

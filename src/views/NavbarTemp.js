@@ -23,8 +23,6 @@ import  { useState } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
-
-
 const menuItems = [
   {
     listIcon: <FaceIcon />,
@@ -105,12 +103,14 @@ export default function ButtonAppBar() {
     }
   const UserName=sessionStorage.getItem("first_name");
 
+ 
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={theme}>
-      <AppBar position="static" style={{ background: '#6D9886', height:80, boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.25)'}}>
+      <AppBar position="static" style={{ background: '#9CA777', height:80, boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.25)'}}>
       <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 9CA777'6D9886flex' }, mr: 1 }} /> */}
           {/* tool bar */}
           <MobileeRightMenuSlider open={state.left}
             onClose={toggleSlider('left', false)}
@@ -142,12 +142,11 @@ export default function ButtonAppBar() {
             <img class="logo" src={logo} width={'70'} height={'70'} style={styleimg} alt=''  />
           </Typography>
           <Typography variant="h5" component="div" className='abc' >
-           
+          
             <a class="head1" href='/HomePage' style={{textDecoration: 'none', color:'white'}}>Self Chef-ficient  </a>
           </Typography>
-         
+        
           <Button  size="large" color="inherit" sx ={{ flexGrow: 1, justifyContent:'right', paddingRight:5, fontFamily:font, fontWeight:"bold"}}>Hello {UserName}</Button>
-         
         
         </Toolbar>
       </AppBar>

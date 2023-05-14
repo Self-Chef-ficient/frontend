@@ -43,7 +43,7 @@ export default function Likedis() {
         disliked:  uniqueTags2
       };
       console.log(result)
-      axios.post('https://self-chef-backend.onrender.com/food/recommend2',result)
+      axios.post(process.env.REACT_APP_BackendAPI+'/food/recommend2',result)
         .then(response => {
           console.log('Data received from server:', response.data);
           console.log('Data received from server:', response.data["recommendations"][0]);
