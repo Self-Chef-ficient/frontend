@@ -47,14 +47,16 @@ const menuItems = [
   {
     listIcon: <LogoutIcon />,
     listText: 'Logout',
-    listPath: '/'
+    listPath: '/SignInSide'
   }
 ]
 
 
 
 const stylebg = {
-  background: '#F9F9F9'}
+  background: '#F9F9F9'
+
+}
 
 export default function ButtonAppBar() {
 
@@ -103,7 +105,11 @@ export default function ButtonAppBar() {
     }
   const UserName=sessionStorage.getItem("first_name");
 
- 
+  function handleLogoutClick() {
+    window.location="/SignInSide";
+    sessionStorage.clear()
+
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -145,9 +151,11 @@ export default function ButtonAppBar() {
           
             <a class="head1" href='/HomePage' style={{textDecoration: 'none', color:'white'}}>Self Chef-ficient  </a>
           </Typography>
-        
-          <Button  size="large" color="inherit" sx ={{ flexGrow: 1, justifyContent:'right', paddingRight:5, fontFamily:font, fontWeight:"bold"}}>Hello {UserName}</Button>
-        
+          
+          <Button  size="large" color="inherit" sx ={{ flexGrow: 1, justifyContent:'right', paddingRight:5, fontFamily:font, fontWeight:"bold"}}>Hello {UserName} &nbsp;&nbsp; &nbsp;&nbsp;     </Button>
+          <IconButton onClick={handleLogoutClick} >
+          <LogoutIcon />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </IconButton>
         </Toolbar>
       </AppBar>
       </ThemeProvider>

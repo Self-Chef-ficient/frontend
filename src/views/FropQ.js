@@ -19,37 +19,38 @@ import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import * as React from 'react';
 import add from "./add.css";
+import axios from "axios";
 
 
 
 
-const card = (
-  <React.Fragment>
-    <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Recipe 
-      </Typography>
-      <Typography variant="h6" component="div">
+// const card = (
+//   <React.Fragment>
+//     <CardContent>
+//       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+//         Recipe 
+//       </Typography>
+//       <Typography variant="h6" component="div">
        
       
-      </Typography>
-    </CardContent>
-    <CardActions>
+//       </Typography>
+//     </CardContent>
+//     <CardActions>
       
-    </CardActions>
-  </React.Fragment>
-);
+//     </CardActions>
+//   </React.Fragment>
+// );
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+//   marginLeft: "auto",
+//   transition: theme.transitions.create("transform", {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
 
 
 
@@ -59,95 +60,52 @@ const ExpandMore = styled((props) => {
 export default function FropQ() 
   {
     
-    const [expanded, setExpanded] = React.useState(false);
+    // const [expanded, setExpanded] = React.useState(false);
   
-    const handleExpandClick = () => {
-      setExpanded(!expanded);
-    };
+    // const handleExpandClick = () => {
+    //   setExpanded(!expanded);
+    // };
 
-
+const [foods, setFoods] = useState([]);
 const UserName=sessionStorage.getItem("first_name");
+const UserId=sessionStorage.getItem("User_id");
+console.log(UserName, UserId)
+// axios.get(process.env.REACT_APP_BackendAPI+'/fav/'+UserId)
+ const fetchFavorites = (userId) => {
+  axios.get(process.env.REACT_APP_BackendAPI+ '/fav/'+UserId)
+    .then(response => {
+      // Process the response data
+      console.log(response.data);
+      setFoods(response.data)
+    })
+    .catch(error => {
+      // Handle the error
+      console.error('Error fetching favorites:', error);
+    });
+};
+fetchFavorites(UserId);
 
+// const userRecipes = jsonData.filter((recipe) => recipe.userid === UserId);
 return (
   <>
   <NavbarTemp/>
-  <body class="fropbody"> <br></br><br></br><br></br>
-  <div >
-    <h1 class="ProfileName">Hello {UserName}</h1>
-    <Grid container direction="row" sx={{ spacing:6,gap:20 , paddingLeft:20 }} >
-    
-    <Grid >
-    <Card variant="outlined" sx={{ maxWidth: 250 , boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)',
-            transform: 'translateY(-8px)',
-            transition: 'transform 0.2s ease-in-out',
-            '&:hover': {
-            transform: 'translateY(-4px)',
-            },border: '20px solid white',
-            outline: 'none',borderRadius:5}} >{card}
-    <Typography>Brussels Sprouts With Bacon and Chestnuts</Typography>
-    <CardHeader
-    avatar={
-      <Avatar sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}} aria-label="recipe" src={recipe}></Avatar>
-    }
-  />
-  <CardMedia
-    component="img"
-    height="194"
-    image="http://graphics8.nytimes.com/images/2014/05/19/dining/Brussels-Sprouts/Brussels-Sprouts-master315.jpg"
-    alt="Paella dish"
-  />
-  <CardActions disableSpacing>
-    <ExpandMore
-    color="secondary"
-      expand={expanded}
-      onClick={handleExpandClick}
-      aria-expanded={expanded}
-      aria-label="show more"
-    >
-      <ExpandMoreIcon />
-    </ExpandMore>
-  </CardActions>
+  <body class="fropbodyq"> <br></br><br></br><br></br>
+  <div>
+    <h1 class="heading profile">Favorite Foods List</h1>
+    <ul>
+      {foods.map((food) => (
+        <li key={food.food_id}>
+          <h2 class="food-name">{food.food_name}</h2>
+          <img class="food-image" src={food.food_link} alt={food.food_name} />
+          <p class="food-item">{food.food_method}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
   
-  <Collapse in={expanded} timeout="auto" unmountOnExit>
-    <CardContent>
-        <Typography paragraph>Method:</Typography>
-        <Typography paragraph>"Heat oven to 375. Put chopped bacon in an ovenproof skillet with chopped brussels sprouts, onion and chestnuts. Toss with olive oil, and put in the oven; roast, tossing occasionally, until tender. Nice with breadcrumbs on top."
-        </Typography>
-    </CardContent>
-  </Collapse>
-  </Card>
-  </Grid>
 
-    
-  
-    
-    </Grid>
-    </div> 
 
-    <br></br>
-    <br>
-    </br>
-    <br>
-    </br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br><br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br>
-    </br>
-    <br>
-    </br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
+
 
     </body>
     

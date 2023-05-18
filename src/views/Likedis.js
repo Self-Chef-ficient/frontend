@@ -42,11 +42,13 @@ export default function Likedis() {
         liked:  uniqueTags,
         disliked:  uniqueTags2
       };
+      result.user=sessionStorage.getItem("User_id");
       console.log(result)
-      axios.post(process.env.REACT_APP_BackendAPI+'/food/recommend2',result)
+      axios.post(process.env.REACT_APP_BackendAPI+'/food/recommendText',result)
         .then(response => {
           console.log('Data received from server:', response.data);
           console.log('Data received from server:', response.data["recommendations"][0]);
+          console.log()
           localStorage.setItem("dish1", JSON.stringify(response.data["recommendations"][0]))
           localStorage.setItem("dish2", JSON.stringify(response.data["recommendations"][1]))
           localStorage.setItem("dish3", JSON.stringify(response.data["recommendations"][2]))
