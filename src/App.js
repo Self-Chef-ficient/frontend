@@ -11,7 +11,7 @@ import FoodRecommendations from './views/FoodRecommendation';
 import Frop from './views/Frop';
 import GridTest from "./views/GridTest"
 import User from "./views/User"
-import FropQ from './views/FropQ';
+import Fav from './views/Fav';
 import FoodRectrial from './views/FoodRectrial';
 
 
@@ -30,7 +30,7 @@ function App() {
      <Route exact path="/Frop" element={<Frop/>}></Route>
      <Route exact path="/GridTest" element={<GridTest/>}></Route>
      <Route exact path="/User" element={<User/>}></Route>
-     <Route exact path="/FropQ" element={<FropQ/>}></Route>
+     <Route exact path="/Fav" element={<Fav/>}></Route>
      <Route exact path="/FoodRectrial" element={<FoodRectrial/>}></Route>
 
      </Routes>
