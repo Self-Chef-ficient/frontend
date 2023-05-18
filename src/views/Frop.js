@@ -21,10 +21,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import * as React from 'react';
 import add from "./add.css";
 // import queryString from 'query-string';
-import debounce from 'lodash/debounce';
 import axios from "axios";
+import { Paper } from "@material-ui/core";
+import { green } from "@mui/material/colors";
+import { useLocation } from 'react-router-dom';
 
-
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
 const card = (
   <React.Fragment>
@@ -44,48 +55,34 @@ const card = (
 );
 
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-
 
 
 export default function Frop() 
   {
+
+    const rec=localStorage.getItem("QuizRespJson");
+    const recJson=JSON.parse(rec);
+    
     const [expanded, setExpanded] = React.useState(false);
+    
   
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
 
-    const [expanded1, setExpanded1] = React.useState(false);
   
-    const handleExpandClick1 = () => {
-      setExpanded1(!expanded1);
-    };
+    console.log("Response json from quiz page recieved:");
+    console.log({recJson});
 
-    const [expanded2, setExpanded2] = React.useState(false);
-  
-    const handleExpandClick2 = () => {
-      setExpanded2(!expanded2);
-    };
-
-    const dish1= localStorage.getItem("dish1")
-    console.log(dish1)
+    //setRecomend(localStorage.getItem("QuizRespJson"))
+    // const dish1= localStorage.getItem("dish1")
+    // console.log(dish1)
    
-    const dish2= localStorage.getItem("dish2")
-    const dish3= localStorage.getItem("dish3")
-    const data= JSON.parse(dish1);
-    const data2= JSON.parse(dish2);
-    const data3= JSON.parse(dish3);
+    // const dish2= localStorage.getItem("dish2")
+    // const dish3= localStorage.getItem("dish3")
+    // const data= JSON.parse(dish1);
+    // const data2= JSON.parse(dish2);
+    // const data3= JSON.parse(dish3);
     // const [favorites, setFavorites] = useState('');
     const UserId=sessionStorage.getItem("User_id");
     
@@ -113,200 +110,102 @@ axios.post(process.env.REACT_APP_BackendAPI+'/fav/createFavorite',favResponse)
 });
 }
 
+
+
       
 
     return (
       <>
       <NavbarTemp/>
-     <body class="fropbody"> <br></br><br></br>
-      <div >
-        <Grid container direction="row" sx={{ spacing:6,gap:20 , paddingLeft:20 }} >
-        
-        <Grid >
-        <Card variant="outlined" sx={{ maxWidth: 250 , boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)',
-              transform: 'translateY(-8px)',
-              transition: 'transform 0.2s ease-in-out',
-              '&:hover': {
-              transform: 'translateY(-4px)',
-              },border: '20px solid white',
-              outline: 'none',borderRadius:5}} >{card}
-        <Typography>{data.food_name}</Typography>
-        <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}} aria-label="recipe" src={recipe}></Avatar>
-        }
-
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={data.image_link}
-        alt="Paella dish"
-      />
-      <CardActions disableSpacing>
-        <IconButton class="icon-button"  color="error" aria-label="add to favorites" 
-         onClick={() => handleFavorite(data.food_id, data.food_name, data.image_link, data.instructions)}
-        >
-          <FavoriteIcon />
-        </IconButton>
-       
-        <ExpandMore
-        color="secondary"
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>{data.instructions}
-          </Typography>
-          <Typography paragraph>
+      <body >
+      <Paper
+        elevation={3}
+        style={{
+          height: 900,
+          backgroundImage: `url(https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
+          backgroundSize: "cover",
+          backgroundPosition: "left",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "rgba(255,255,255,0.5",
+          overflowY: 'scroll',
+          opacity: 0.9,
+          position: "relative"
+        }}
+      >
+        <br></br>
+        <div class="card-container" sx={{ backgroundColor: "#ffffff" }}>
          
-          </Typography>
-        
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-        </CardContent>
-      </Collapse>
-        </Card>
-        </Grid>
-    
-        <Grid >
-        <Card variant="outlined" sx={{ maxWidth: 250 , boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)',
-              transform: 'translateY(-8px)',
-              transition: 'transform 0.2s ease-in-out',
-              '&:hover': {
-              transform: 'translateY(-4px)',
-                },border: '20px solid white',
-              outline: 'none',borderRadius:5}} >{card}
-        <Typography>{data2.food_name}</Typography>
-        <CardHeader
-              avatar={
-              <Avatar sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}}  aria-label="recipe" src={recipe}>
-               R
-              </Avatar>
-                }
-    
-      />
-      <CardMedia
+        {recJson.recommendations.map((card) => 
+          <Card
+            variant="outlined"
+            className="card"
+            sx={{
+              maxWidth: 345,
+              boxShadow:
+                "0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)",
+              transform: "translateY(-8px)",
+              transition: "transform 0.2s ease-in-out",
+              "&:hover": {
+                transform: "translateY(-4px)",
+              },
+              border: "20px solid white",
+              outline: "none",
+              borderRadius: 5,
+              marginBottom:"10%"
+            }}
+          >
+            {card.food_name}
+      
+          
+            <CardMedia
               component="img"
               height="194"
-              image={data2.image_link}
-              alt="Paella dish"
-      />
-      <CardActions disableSpacing>
-        <IconButton class="icon-button" color="error" aria-label="add to favorites"
-         onClick={() => handleFavorite(data2.food_id, data2.food_name, data2.image_link, data2.instructions)}
+              alt="Uploaded img"
+             
+              image={card.image_link}
+              style={{ borderRadius: '15px' , paddingTop: '10%'}}
+            />
+            
+            <CardActions disableSpacing>
+            <IconButton class="icon-button"  color="error" aria-label="add to favorites" 
+         onClick={() => handleFavorite(card.food_id, card.food_name, card.image_link, card.instructions)}
         >
           <FavoriteIcon />
+          
         </IconButton>
-       
-        <ExpandMore
-          color="secondary"
-          expand={expanded1}
-          onClick={handleExpandClick1}
-          aria-expanded={expanded1}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      
-      <Collapse in={expanded1} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>{data2.instructions}
 
-          </Typography>
-        </CardContent>
-      </Collapse>
-        </Card>
-        </Grid>
-      
-        <Grid>
-        <Card variant="outlined" sx={{ maxWidth: 250 , boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)',
-    transform: 'translateY(-8px)',
-    transition: 'transform 0.2s ease-in-out',
-    '&:hover': {
-      transform: 'translateY(-4px)',
-    },border: '20px solid white',
-    outline: 'none',borderRadius:5}} >{card}
-        <Typography>{data3.food_name}</Typography>
-        <CardHeader
-        avatar={
-          <Avatar color="error" sx={{ bgcolor: red[500] ,height:"50px", widht:"50px"}}  aria-label="recipe" src={recipe}>
-            R
-          </Avatar>
-        }
-       
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={data3.image_link}
-        alt="Paella dish"
-      />
-      <CardActions disableSpacing>
-        <IconButton class="icon-button" color="error" aria-label="add to favorites"
-         onClick={() => handleFavorite(data3.food_id, data3.food_name, data3.image_link, data3.instructions)}
-        >
-          <FavoriteIcon />
-        </IconButton>
-        
-        <ExpandMore
-        color="secondary"
-          expand={expanded2}
-          onClick={handleExpandClick2}
-          aria-expanded={expanded2}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      
-      <Collapse in={expanded2} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-          {data3.instructions}
-          </Typography>
-         
-        </CardContent>
-      </Collapse>
-        </Card>
-        </Grid>
-        </Grid>
-        </div> 
+              <ExpandMore expand={expanded}onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+                color="primary"
+              >
+                <ExpandMoreIcon />
+              </ExpandMore>
+            </CardActions>
 
-        <br></br>
-        <br>
-        </br>
-        <br>
-        </br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br><br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph color={"#000000"}>
+                  Method:
+                </Typography>
+                <Typography paragraph>
+                  {card.instructions}
+                </Typography>
+                
+              </CardContent>
+            </Collapse>
+          </Card>
+        )}
+          
+        </div>
+      </Paper>
+      </body>
+    </>
+    
+  );
+}
 
-        </body>
-        
-      </>
-    );
-  }
+     
 
 
 

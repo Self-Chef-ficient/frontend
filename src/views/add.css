@@ -27,7 +27,7 @@ body{
    padding-top: 2%;
     padding-left: 40%;
     padding-right: 20%;
-
+    margin-bottom: 30%;
 }
 .rrcard2{
     
@@ -309,3 +309,42 @@ size: large;
       }
     }
   }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: -5% -5%;
+    margin-left: 15%;
+    margin-right: 15%;;
+    margin-top: 1%;
+  }
+
+  .card {
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width based on your desired layout */
+   
+    margin: 5% 5%;
+    margin-bottom: 20px;
+  }
+
+  /* Media query for small screens */
+  @media (max-width: 768px) {
+    .card {
+      flex: 0 0 calc(50% - 20px); /* Adjust the width for smaller screens */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      flex: 0 0 100%; /* Cards take up full width on extra small screens */
+   
+    }
+  }
+.fav{
+background-image:url('https://images.pexels.com/photos/934011/pexels-photo-934011.jpeg?auto=compress&cs=tinysrgb&w=600');
+background-repeat: no-repeat;
+background-position: right;
+background-size: cover;
+color: #000;
+
+}
+

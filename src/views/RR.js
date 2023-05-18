@@ -18,6 +18,7 @@ import Avatar from "@mui/material/Avatar";
 import { green } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import * as React from "react";
+import { CircularProgress } from '@mui/material';
 
 import axios from "axios";
 
@@ -38,6 +39,8 @@ export default function RR() {
   const [recipe, setRecipe] = useState([])
   const [image, setImage] = useState(null)
   const [imageFile, setImageFile] = useState(null)
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleFileUpload = event => {
     setImage(event.target.files[0]);
@@ -53,6 +56,7 @@ export default function RR() {
 
   const getRecipe = event => {
     event.preventDefault();
+    setIsLoading(true);
 
     const formData = new FormData();
     formData.append('file', image);
@@ -66,10 +70,13 @@ export default function RR() {
     })
       .then((response) => {
         // response.json()
+        setIsLoading(false);
         console.log(response.data[0]['Instructions'])
         setRecipe(response.data)
         console.log(response)
-      }).catch(error => console.error(error))
+      }).catch(error => {
+        setIsLoading(false);
+        console.error(error)})
   
   };
 
@@ -78,7 +85,7 @@ export default function RR() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+ 
   return (
     <>
       <NavbarTemp />
@@ -91,7 +98,7 @@ export default function RR() {
           backgroundSize: "cover",
           backgroundPosition: "left",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "rgba(255,255,255,0.5",
+          backgroundColor: "rgba(255,255,255,0.5)",
           overflowY: 'scroll',
           opacity: 0.9,
           position: "relative",
@@ -117,70 +124,78 @@ export default function RR() {
         <br></br>
 
         <div class="rrcard1" sx={{ backgroundColor: "#ffffff" }}>
-        {recipe.map((card) => 
-          <Card
-            variant="outlined"
-            sx={{
-              maxWidth: 345,
-              boxShadow:
-                "0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)",
-              transform: "translateY(-8px)",
-              transition: "transform 0.2s ease-in-out",
-              "&:hover": {
-                transform: "translateY(-4px)",
-              },
-              border: "20px solid white",
-              outline: "none",
-              borderRadius: 5,
-            }}
-          >
-            {card.Title}
-            <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
-                  R
-                </Avatar>
-              }
-            />
-            <CardMedia
-              component="img"
-              height="194"
-              alt="Uploaded img"
-              image={imageFile} 
-            />
-            <CardActions disableSpacing>
-              <ExpandMore expand={expanded}onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-                color="primary"
-              >
-                <ExpandMoreIcon />
-              </ExpandMore>
-            </CardActions>
+        {isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          recipe.map((card) => 
+            <Card
+              variant="outlined"
+              sx={{
+                maxWidth: 345,
+                boxShadow:
+                  "0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23)",
+                transform: "translateY(-8px)",
+                transition: "transform 0.2s ease-in-out",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                },
+                border: "20px solid white",
+                outline: "none",
+                borderRadius: 5,
+                marginBottom:"10%"
+              }}
+            >
+              {card.Title}
+              <CardHeader
+                avatar={
+                  <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
+                    R
+                  </Avatar>
+                }
+              />
+              <CardMedia
+                component="img"
+                height="194"
+                alt="Uploaded img"
+                image={imageFile} 
+              />
+              <CardActions disableSpacing>
+                <ExpandMore expand={expanded} onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                  color="primary"
+                >
+                  <ExpandMoreIcon />
+                </ExpandMore>
+              </CardActions>
 
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-              <Typography paragraph color={"#000000"}>
-                  Ingredients:
-                </Typography>
-                <Typography paragraph>
-                  {card.Ingredients}
-                </Typography>
-                <Typography paragraph color={"#000000"}>
-                  Method:
-                </Typography>
-                <Typography paragraph>
-                  {card.Instructions}
-                </Typography>
-                
-              </CardContent>
-            </Collapse>
-          </Card>
-          
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography paragraph color={"#000000"}>
+                    Ingredients:
+                  </Typography>
+                  <Typography paragraph>
+                    {card.Ingredients}
+                  </Typography>
+                  <Typography paragraph color={"#000000"}>
+                    Method:
+                  </Typography>
+                  <Typography paragraph>
+                    {card.Instructions}
+                  </Typography>
+                </CardContent>
+              </Collapse>
+            </Card>
+          )
         )}
-          
         </div>
       </Paper>
     </>
   );
+
+
+
+  
 }

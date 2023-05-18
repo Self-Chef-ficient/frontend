@@ -20,52 +20,16 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import * as React from 'react';
 import add from "./add.css";
 import axios from "axios";
+import { List, ListItem, ListItemText, ListItemAvatar } from '@mui/material';
 
 
 
 
-// const card = (
-//   <React.Fragment>
-//     <CardContent>
-//       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-//         Recipe 
-//       </Typography>
-//       <Typography variant="h6" component="div">
-       
-      
-//       </Typography>
-//     </CardContent>
-//     <CardActions>
-      
-//     </CardActions>
-//   </React.Fragment>
-// );
-
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-//   marginLeft: "auto",
-//   transition: theme.transitions.create("transform", {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
-
-
-
-
-
-
-export default function FropQ() 
+export default function Fav() 
   {
-    
-    // const [expanded, setExpanded] = React.useState(false);
-  
-    // const handleExpandClick = () => {
-    //   setExpanded(!expanded);
-    // };
-
+    const handleImageError = (event) => {
+      event.target.src = 'images/OIG.jpeg'; // Replace 'default_image.jpg' with the path to your default image
+    };
 const [foods, setFoods] = useState([]);
 const UserName=sessionStorage.getItem("first_name");
 const UserId=sessionStorage.getItem("User_id");
@@ -89,25 +53,34 @@ fetchFavorites(UserId);
 return (
   <>
   <NavbarTemp/>
-  <body class="fropbodyq"> <br></br><br></br><br></br>
-  <div>
-    <h1 class="heading profile">Favorite Foods List</h1>
-    <ul>
-      {foods.map((food) => (
-        <li key={food.food_id}>
-          <h2 class="food-name">{food.food_name}</h2>
-          <img class="food-image" src={food.food_link} alt={food.food_name} />
-          <p class="food-item">{food.food_method}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
+  
+
+    <div class="fav">
+      <br></br>
+      <Typography variant="h3" align="center" gutterBottom>
+        Favorite Foods List
+      </Typography>
+      <List style={{ display: 'flex', flexDirection: 'column' }}>
+        {foods.map((food) => (
+          <ListItem key={food.food_id} alignItems="center">
+           <img src={food.food_link} alt={food.food_name}  onError={handleImageError} style={{ width:'300px', height: '300px', marginRight: '20px' , borderRadius:'20px'}} />
+            <ListItemText
+              primary={food.food_name}
+              secondary={food.food_method}
+              primaryTypographyProps={{ variant: 'h4' }}
+              secondaryTypographyProps={{ variant: 'body1' }}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  
   
 
 
 
 
-    </body>
+
     
   </>
 );

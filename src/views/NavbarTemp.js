@@ -27,7 +27,7 @@ const menuItems = [
   {
     listIcon: <FaceIcon />,
     listText: 'Profile',
-    listPath: '/HomePage'
+    listPath: '/Fav'
   },
   {
     listIcon: <Home />,
@@ -42,7 +42,7 @@ const menuItems = [
   {
     listIcon: <FavoriteIcon />,
     listText: 'Favourites',
-    listPath: '/HomePage'
+    listPath: '/Fav'
   },
   {
     listIcon: <LogoutIcon />,
@@ -108,6 +108,7 @@ export default function ButtonAppBar() {
   function handleLogoutClick() {
     window.location="/SignInSide";
     sessionStorage.clear()
+    localStorage.clear()
 
   }
 
