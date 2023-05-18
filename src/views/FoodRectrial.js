@@ -33,10 +33,19 @@ const handleLike = (imageName, like) => {
         name: name,
         like: likes[name] ? 'like' : 'dislike'
       }));
-     console.log({ingr});
+    
+    //ingr.user=sessionStorage.getItem("User_id");
+     console.log({ingr}.ingr);
+     const quiz={};
+     quiz.user=sessionStorage.getItem("User_id");
+     quiz.ingr={ingr}.ingr;
+    console.log("quiz:",quiz);
+    console.log("ingr:-->",quiz.ingr);
+    console.log("user:-->",quiz.user);
      console.log("testing");
-     axios.post(process.env.REACT_APP_BackendAPI+'/food/recommend3',{ingr})
+     axios.post(process.env.REACT_APP_BackendAPI+'/food/recommendQuiz',quiz)
         .then(response => {
+
           console.log('Data received from server:', response.data);
           console.log('Data received from server:', response.data["recommendations"][0]);
           localStorage.setItem("dish1", JSON.stringify(response.data["recommendations"][0]))

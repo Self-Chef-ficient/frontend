@@ -90,7 +90,9 @@ body{
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+    overflow-y: scroll;
     animation: slideBg 20s linear infinite;
+
     background-color: rgba(red, green, blue, 0.5);
     opacity: 0.9;
     z-index: -1;
@@ -257,4 +259,53 @@ size: large;
     padding-bottom: 1%;
 
 
+  }
+  .food-item {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding: 20px;
+    text-align: center;
+    color: #000;
+  }
+  
+  
+  
+  .food-name {
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: bolder;
+    color: #000;
+    text-transform: capitalize;
+  }
+  
+  .food-image{
+    border-radius: 50px;
+    width: 400px;
+    height: 400px;
+    box-shadow: 8px 8px 10px #aaa;
+   
+
+  }
+  .fropbodyq {
+    content: '';
+    background-image: url('https://images.pexels.com/photos/7201115/pexels-photo-7201115.jpeg?auto=compress&cs=tinysrgb&w=800');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+    background-attachment: fixed;
+    overflow-y: scroll;
+    animation: slideBg 20s linear infinite;
+
+    background-color: rgba(red, green, blue, 0.5);
+    opacity: 0.9;
+    z-index: -1;
+
+    @keyframes slideBg {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 0;
+      }
+    }
   }

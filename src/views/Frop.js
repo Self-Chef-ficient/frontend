@@ -22,6 +22,7 @@ import * as React from 'react';
 import add from "./add.css";
 // import queryString from 'query-string';
 import debounce from 'lodash/debounce';
+import axios from "axios";
 
 
 
@@ -85,14 +86,32 @@ export default function Frop()
     const data= JSON.parse(dish1);
     const data2= JSON.parse(dish2);
     const data3= JSON.parse(dish3);
-    const [favorites, setFavorites] = useState('');
+    // const [favorites, setFavorites] = useState('');
     const UserId=sessionStorage.getItem("User_id");
+    
 
-const handleFavorite = (foodName) => {
-  setFavorites(foodName);
-  console.log("clicked on fav", favorites,UserId);
+const handleFavorite = (food_id, food_name, food_link, food_method) => {
   
-};
+  // console.log("clicked on fav",UserId,Food_id, Food_name, food_link, food_method);
+  const favResponse={
+    UserId,
+  food_id,
+  food_name,
+  food_link,
+  food_method
+
+  };
+  
+  console.log(JSON.stringify(favResponse));
+
+axios.post(process.env.REACT_APP_BackendAPI+'/fav/createFavorite',favResponse)
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.log(error.response.data);
+});
+}
 
       
 
@@ -126,7 +145,7 @@ const handleFavorite = (foodName) => {
       />
       <CardActions disableSpacing>
         <IconButton class="icon-button"  color="error" aria-label="add to favorites" 
-         onClick={() => handleFavorite(data.food_id)}
+         onClick={() => handleFavorite(data.food_id, data.food_name, data.image_link, data.instructions)}
         >
           <FavoriteIcon />
         </IconButton>
@@ -185,7 +204,7 @@ const handleFavorite = (foodName) => {
       />
       <CardActions disableSpacing>
         <IconButton class="icon-button" color="error" aria-label="add to favorites"
-        onClick={() => handleFavorite(data.food_id)}
+         onClick={() => handleFavorite(data2.food_id, data2.food_name, data2.image_link, data2.instructions)}
         >
           <FavoriteIcon />
         </IconButton>
@@ -237,7 +256,7 @@ const handleFavorite = (foodName) => {
       />
       <CardActions disableSpacing>
         <IconButton class="icon-button" color="error" aria-label="add to favorites"
-         onClick={() => handleFavorite(data3.food_id)}
+         onClick={() => handleFavorite(data3.food_id, data3.food_name, data3.image_link, data3.instructions)}
         >
           <FavoriteIcon />
         </IconButton>
