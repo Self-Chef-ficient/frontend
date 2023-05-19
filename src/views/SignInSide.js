@@ -151,10 +151,7 @@ export default function SignInSide() {
                 value = {password}
                 onChange = {(e) =>{setPassword(e.target.value)}}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+              
               <Button
                 type="submit"
                 fullWidth
@@ -169,7 +166,7 @@ export default function SignInSide() {
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
-                    Forgot password?
+                   
                   </Link>
                 </Grid>
                 <Grid item>
