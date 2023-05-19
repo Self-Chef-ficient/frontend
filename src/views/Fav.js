@@ -22,68 +22,84 @@ import add from "./add.css";
 import axios from "axios";
 import { List, ListItem, ListItemText, ListItemAvatar } from '@mui/material';
 
+import { Paper } from "@material-ui/core";
 
 
 
-export default function Fav() 
-  {
-    const handleImageError = (event) => {
-      event.target.src = 'images/OIG.jpeg'; // Replace 'default_image.jpg' with the path to your default image
-    };
-const [foods, setFoods] = useState([]);
-const UserName=sessionStorage.getItem("first_name");
-const UserId=sessionStorage.getItem("User_id");
-console.log(UserName, UserId)
-// axios.get(process.env.REACT_APP_BackendAPI+'/fav/'+UserId)
- const fetchFavorites = (userId) => {
-  axios.get(process.env.REACT_APP_BackendAPI+ '/fav/'+UserId)
-    .then(response => {
-      // Process the response data
-      console.log(response.data);
-      setFoods(response.data)
-    })
-    .catch(error => {
-      // Handle the error
-      console.error('Error fetching favorites:', error);
-    });
-};
-fetchFavorites(UserId);
+export default function Fav() {
+  const [foods, setFoods] = useState([]);
+  const UserName = sessionStorage.getItem("first_name");
+  const UserId = sessionStorage.getItem("User_id");
 
-// const userRecipes = jsonData.filter((recipe) => recipe.userid === UserId);
-return (
-  <>
-  <NavbarTemp/>
+  const handleImageError = (event) => {
+    event.target.src = 'images/OIG.jpeg'; // Replace 'default_image.jpg' with the path to your default image
+  };
+
+  useEffect(() => {
+    fetchFavorites(UserId);
+  }, [UserId]);
+
+  const fetchFavorites = (userId) => {
+    axios
+      .get(process.env.REACT_APP_BackendAPI + '/fav/' + userId)
+      .then((response) => {
+        // Process the response data
+        console.log(response.data);
+        setFoods(response.data);
+      })
+      .catch((error) => {
+        // Handle the error
+        console.error('Error fetching favorites:', error);
+      });
+  };
+
+ 
   
+  return (
+    <>
+      <NavbarTemp />
+  
+      <div className="fav">
+        <br />
+        <Typography variant="h3" align="center" gutterBottom>
+          Favorite Foods List
+        </Typography>
 
-    <div class="fav">
-      <br></br>
-      <Typography variant="h3" align="center" gutterBottom>
-        Favorite Foods List
-      </Typography>
-      <List style={{ display: 'flex', flexDirection: 'column' }}>
-        {foods.map((food) => (
-          <ListItem key={food.food_id} alignItems="center">
-           <img src={food.food_link} alt={food.food_name}  onError={handleImageError} style={{ width:'300px', height: '300px', marginRight: '20px' , borderRadius:'20px'}} />
-            <ListItemText
-              primary={food.food_name}
-              secondary={food.food_method}
-              primaryTypographyProps={{ variant: 'h4' }}
-              secondaryTypographyProps={{ variant: 'body1' }}
-            />
-          </ListItem>
-        ))}
-      </List>
-    </div>
+        <Grid container spacing={2}>
+          <List style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+            {foods.map((food) => (
+                      <Paper elevation={24}>
+              <ListItem key={food.food_id} alignItems="flex-start">
+                <Grid item xs={12} sm={4} style={{ marginBottom: '20px' }}>
+                  <img
+                    src={food.food_link}
+                    alt={food.food_name}
+                    onError={handleImageError}
+                    style={{ width: '100%', height: 'auto', borderRadius: '20px' }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={8}>
+                  <ListItemText
+                    primary={food.food_name}
+                    secondary={food.food_method}
+                    primaryTypographyProps={{ variant: 'h4' }}
+                    secondaryTypographyProps={{ variant: 'body1' }}
+                  />
+                     
+                </Grid>
+              </ListItem>
+              </Paper>
+            ))}
+          </List>
+        </Grid>
+     
+      </div>
+    </>
+  );
   
   
+}
 
 
-
-
-
-    
-  </>
-);
-  }
 
 
