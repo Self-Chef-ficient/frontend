@@ -348,3 +348,26 @@ color: #000;
 
 }
 
+.favdiv{
+
+align-items: center;
+
+}
+
+.fav1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.food-list {
+  display: grid;
+  gap: 20px;
+}
+
+.food-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  border-radius: 20px;
+}

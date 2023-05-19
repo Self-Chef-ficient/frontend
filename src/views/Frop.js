@@ -160,9 +160,10 @@ axios.post(process.env.REACT_APP_BackendAPI+'/fav/createFavorite',favResponse)
             <CardMedia
               component="img"
               height="194"
-              alt="Uploaded img"
+              alt={card.food_name}
              
               image={card.image_link}
+             
               style={{ borderRadius: '15px' , paddingTop: '10%'}}
             />
             
